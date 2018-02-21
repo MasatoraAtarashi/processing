@@ -14,13 +14,21 @@ void draw() {
   circle.draw();
 }
 
+void mousePressed(MouseEvent  event) {
+  circle.x = event.getX();
+  circle.y = event.getY();
+  circle.diameter = 100;
+}
+
 class Circle {
   float diameter = 100;
+  float x = width/2;
+  float y = height/2;
   Circle() {}
   
   void draw() {
     if(diameter < 1000){
-      ellipse(width/2,height/2,diameter,diameter);
+      ellipse(x,y,diameter,diameter);
       diameter += 20;
     }
   }
