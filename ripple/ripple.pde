@@ -6,7 +6,6 @@ void setup() {
   circle = new Circle();
 }
 
-int num = 120;
 void draw() {
   background(255);
   stroke(0,127,255);
