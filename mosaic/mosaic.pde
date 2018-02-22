@@ -8,17 +8,19 @@ Slider mosaicSize;
 void setup() {
   size(800,600);
   background(0);
+  
   img = loadImage("photo.jpg");
-  img.resize(width-100,height-100);
-  image(img,50,50);
+  img.resize(width,height);
+  image(img,0,0);
   
   cp5 = new ControlP5(this);
   
+  int myColor = color(0,255,0);
   mosaicSize = cp5.addSlider("MOSAIC SIZE")
   .setPosition(20,20)
   .setRange(5,20)
-  .setValue(5);
-  
+  .setValue(10)
+  .setColorForeground(myColor);
 }
 
 void draw() {
@@ -40,8 +42,7 @@ void mouseReleased(MouseEvent  event) {
     for(int i = rectXStart; i < rectXEnd; i = i + mosaic) {
       color c = img.get(i,j);
       fill(c);
-      rectMode(CORNERS);
-      rect(i,j,i+mosaic,j+mosaic);
+      rect(i,j,mosaic,mosaic);
     }
   }
 }
