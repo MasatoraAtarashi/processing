@@ -1,10 +1,24 @@
 PImage img;
 
+import controlP5.*;
+ControlP5 cp5;
+
+Slider mosaicSize;
+
 void setup() {
   size(800,600);
+  background(0);
   img = loadImage("photo.jpg");
-  img.resize(width,height);
-  image(img,0,0);
+  img.resize(width-100,height-100);
+  image(img,50,50);
+  
+  cp5 = new ControlP5(this);
+  
+  mosaicSize = cp5.addSlider("MOSAIC SIZE")
+  .setPosition(20,20)
+  .setRange(5,20)
+  .setValue(5);
+  
 }
 
 void draw() {
@@ -18,8 +32,8 @@ void mousePressed(MouseEvent  event) {
   rectYStart = event.getY();
 }
 
-int mosaic = 5;
 void mouseReleased(MouseEvent  event) {
+  int mosaic = int(mosaicSize.getValue());
   int rectXEnd = event.getX();
   int rectYEnd = event.getY();
   for(int j = rectYStart; j < rectYEnd; j = j + mosaic) {
